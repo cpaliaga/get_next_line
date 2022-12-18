@@ -14,18 +14,23 @@ SRC_DIR = ./
 SRC_FILES = get_next_line.c get_next_line_utils.c 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 
-TEST_DIR = tester_get_next_line/
-TEST_FILES = basic_gnl.c
-TEST = $(addprefix $(TEST_DIR), $(TEST_FILES))
+BONUS_DIR = ./
+BONUS_FILES = get_next_line_bonus.c get_next_line_utils_bonus.c 
+BONUS = $(addprefix $(BONUS_DIR), $(BONUS_FILES))
 
-INC_DIR = ./
-INC_FILES = get_next_line.h
-LIB = $(addprefix $(INC_DIR), $(INC_FILES))
+TEST_DIR = tester_get_next_line/
+TEST_A = basic_gnl.c
+TEST = $(addprefix $(TEST_DIR), $(TEST_A))
+
+INC_D = ./
+INC_H = get_next_line.h
+LIB = ./
 
 OBJ = $(subst .c,.o,$(SRC))
 CFLAGS = -Wall -Wextra -Werror
 BUF = -D BUFFER_SIZE=42
-NAME = libgnl.a  
+
+NAME = libgnl.a
 EXEC = gnl
 HIDE = .
 
@@ -38,10 +43,10 @@ $(NAME): $(OBJ)
 	@echo "library $(NAME) created & indexed"
 
 $(filter-out %.o, $(SRC)): $(filter-out %.c, $(SRC))
-	@gcc $(CFLAGS) -I. -c $^ -o $@
+	@gcc $(CFLAGS) -I$(INC_D) -c $^ -o $@
 
 ex: $(NAME)
-	@gcc $(CFLAGS) $(TEST) -L. -lgnl
+	@gcc $(CFLAGS) $(TEST) -L$(LIB) -lgnl
 
 clean:
 	@rm -fr $(SRC:.c=.o)

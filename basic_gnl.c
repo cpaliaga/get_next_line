@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "./get_next_line.h"
 #include <fcntl.h>
 //<sys/type.h>
 #include <stdio.h>
@@ -10,7 +10,7 @@ int main()
     char    *line;
     int     i;
 
-    fd = open("quijote.txt", O_RDWR, 0700);
+    fd = open("./quijote.txt", O_RDWR, 0700);
     if (fd == -1)
         return (0);
     else
