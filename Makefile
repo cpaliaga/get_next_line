@@ -14,27 +14,23 @@ SRC_DIR = ./
 SRC_FILES = get_next_line.c get_next_line_utils.c 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 
+TEST_DIR = test/
+TEST_FILES = main_gnl.c
+TEST = $(addprefix $(TEST_DIR), $(TEST_FILES))
+
 INC_DIR = ./
 INC_FILES = get_next_line.h
 LIB = $(addprefix $(INC_DIR), $(INC_FILES))
 
 OBJ = $(subst .c,.o,$(SRC))
 
-CFLAGS = -Wall -Wextra -Werror -D BUFFER_SIZE=42
-NAME =   
+CFLAGS = -Wall -Wextra -Werror
+BUF = -D BUFFER_SIZE=42
+NAME = libgnl.a  
+EXEC = gnl.exe
 HIDE = .
 #### REGLAS ####
 all: $(NAME)
-
-bonus: &(HIDE)$(NAME)
-
-&(HIDE): $(OBJ) $(OBJ_B)
-	ar crs $(NAME) $(OBJ) $(OBJ_B)
-	ranlib $(NAME)
-	echo "library $(NAME) plus bonus created & indexed"
-
-$(filter-out %.o, $(BONUS)): $(filter-out %.c, $(BONUS))
-gcc $(CFLAGS) -I$(INC_DIR) -c $^ -o $@
 
 $(NAME): $(OBJ)
 	ar crs $(NAME) $(OBJ)
@@ -44,8 +40,11 @@ $(NAME): $(OBJ)
 $(filter-out %.o, $(SRC)): $(filter-out %.c, $(SRC))
 	gcc $(CFLAGS) -I$(INC_DIR) -c $^ -o $@
 
+ex: $(NAME)
+	gcc $(CFLAGS) $(TEST) -L -lgnl -o $(EXEC)
+
 clean:
-	rm -fr $(SRC:.c=.o) $(BONUS:.c=.o)
+	rm -fr $(SRC:.c=.o)
 	echo "OBJECTS deleted"
 
 fclean: clean
@@ -54,5 +53,6 @@ fclean: clean
 
 re: fclean all bonus
 
-.PHONY: bonus all clean fclean re
+.PHONY: all ex clean fclean re
 
+# https://medium.com/@eightlimbed/how-to-create-and-use-a-c-static-library-eec33d502aeb
