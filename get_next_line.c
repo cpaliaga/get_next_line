@@ -106,4 +106,3 @@ char	*get_next_line(int fd)
 	save = ft_save(save);
 	return (line);
 }
-
