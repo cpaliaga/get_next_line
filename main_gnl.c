@@ -1,4 +1,8 @@
 #include "get_next_line.h"
+#include <fcntl.h>
+//<sys/type.h>
+#include <stdio.h>
+#include <unistd.h>
 
 int main()
 {
@@ -11,8 +15,8 @@ int main()
         return (0);
     else
     {
-        i = 0;
-        while(i < 20)
+        i = -1;
+        while(++i < 2500)
         {
             line = get_next_line(fd);
             printf("%s - \n", line);

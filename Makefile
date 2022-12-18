@@ -14,8 +14,8 @@ SRC_DIR = ./
 SRC_FILES = get_next_line.c get_next_line_utils.c 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 
-TEST_DIR = test/
-TEST_FILES = main_gnl.c
+TEST_DIR = tester_get_next_line/
+TEST_FILES = basic_gnl.c
 TEST = $(addprefix $(TEST_DIR), $(TEST_FILES))
 
 INC_DIR = ./
@@ -23,29 +23,29 @@ INC_FILES = get_next_line.h
 LIB = $(addprefix $(INC_DIR), $(INC_FILES))
 
 OBJ = $(subst .c,.o,$(SRC))
-
 CFLAGS = -Wall -Wextra -Werror
 BUF = -D BUFFER_SIZE=42
 NAME = libgnl.a  
-EXEC = gnl.exe
+EXEC = gnl
 HIDE = .
+
 #### REGLAS ####
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar crs $(NAME) $(OBJ)
-	ranlib $(NAME)
-	echo "library $(NAME) created & indexed"
+	@ar crs $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "library $(NAME) created & indexed"
 
 $(filter-out %.o, $(SRC)): $(filter-out %.c, $(SRC))
-	gcc $(CFLAGS) -I$(INC_DIR) -c $^ -o $@
+	@gcc $(CFLAGS) -I. -c $^ -o $@
 
 ex: $(NAME)
-	gcc $(CFLAGS) $(TEST) -L -lgnl -o $(EXEC)
+	@gcc $(CFLAGS) $(TEST) -L. -lgnl
 
 clean:
-	rm -fr $(SRC:.c=.o)
-	echo "OBJECTS deleted"
+	@rm -fr $(SRC:.c=.o)
+	@echo "OBJECTS deleted"
 
 fclean: clean
 	@rm -fr $(NAME)

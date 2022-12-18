@@ -12,7 +12,9 @@
 
 #include "get_next_line.h"
 
-char	ft_get_line(char *save)
+# define BUFFER_SIZE 42
+
+char	*ft_get_line(char *save)
 {
 	int	i;
 	char	*s;
