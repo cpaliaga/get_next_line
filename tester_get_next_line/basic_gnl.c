@@ -10,7 +10,7 @@ int main()
     char    *line;
     int     i;
 
-    fd = open("./tester_get_next_line/quijote.txt", O_RDWR, 0700);
+    fd = open("./quijote.txt", O_RDWR, 0700);
     if (fd == -1)
         return (0);
     else
