@@ -6,7 +6,7 @@
 #    By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 18:10:29 by caliaga-          #+#    #+#              #
-#    Updated: 2022/12/14 18:21:53 by caliaga-         ###   ########.fr        #
+#    Updated: 2023/01/19 12:28:32 by caliaga-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ CFLAGS = -Wall -Wextra -Werror
 BUF = -D BUFFER_SIZE=42
 
 NAME = libgnl.a
-EXEC = gnl
+EXEC = test_gnl
 HIDE = .
 
 #### REGLAS ####
@@ -46,7 +46,7 @@ $(filter-out %.o, $(SRC)): $(filter-out %.c, $(SRC))
 	@gcc $(CFLAGS) -I$(INC_D) -c $^ -o $@
 
 ex: $(NAME)
-	@gcc $(CFLAGS) $(TEST) -L$(LIB) -lgnl
+	@gcc $(CFLAGS) $(TEST) -L$(LIB) -lgnl -o $(EXEC)
 
 clean:
 	@rm -fr $(SRC:.c=.o)
@@ -56,8 +56,6 @@ fclean: clean
 	@rm -fr $(NAME)
 	@echo "$(NAME) deleted"
 
-re: fclean all bonus
+re: fclean all ex
 
 .PHONY: all ex clean fclean re
-
-# https://medium.com/@eightlimbed/how-to-create-and-use-a-c-static-library-eec33d502aeb
