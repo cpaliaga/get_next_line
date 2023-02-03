@@ -6,7 +6,7 @@
 #    By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 18:10:29 by caliaga-          #+#    #+#              #
-#    Updated: 2023/01/19 13:04:50 by caliaga-         ###   ########.fr        #
+#    Updated: 2023/02/03 13:20:38 by caliaga-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,10 +43,10 @@ $(NAME): $(OBJ)
 	@echo "library $(NAME) created & indexed"
 
 $(filter-out %.o, $(SRC)): $(filter-out %.c, $(SRC))
-	@gcc $(CFLAGS) -I$(INC_D) -c $^ -o $@
+	@gcc $(CFLAGS) $(BUF) -I$(INC_D) -c $^ -o $@
 
 ex: $(NAME)
-	@gcc $(CFLAGS) $(TEST) -L$(LIB) -lgnl -o $(EXEC)
+	@gcc $(CFLAGS) $(BUF) $(TEST) -L$(LIB) -lgnl -o $(EXEC)
 
 clean:
 	@rm -fr $(SRC:.c=.o)
