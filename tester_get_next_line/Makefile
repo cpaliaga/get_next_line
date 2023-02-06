@@ -6,7 +6,7 @@
 #    By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 18:10:29 by caliaga-          #+#    #+#              #
-#    Updated: 2023/02/03 13:20:38 by caliaga-         ###   ########.fr        #
+#    Updated: 2023/02/06 15:33:20 by caliaga-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ LIB = ../
 
 OBJ = $(subst .c,.o,$(SRC))
 CFLAGS = -Wall -Wextra -Werror
-BUF = -D BUFFER_SIZE=42
+BUF = -DBUFFER_SIZE=4
 
 NAME = ../libgnl.a
 EXEC = ./gnl

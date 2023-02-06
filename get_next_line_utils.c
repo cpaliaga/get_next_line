@@ -6,7 +6,7 @@
 /*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:55:54 by caliaga-          #+#    #+#             */
-/*   Updated: 2022/12/13 19:19:22 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:55:46 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	ft_strlen(char *str)
 	c = 0;
 	if (!str)
 		return (0);
-	while(str[c] != '\0')
+	while (str[c] != '\0')
 		c++;
 	return (c);
 }
